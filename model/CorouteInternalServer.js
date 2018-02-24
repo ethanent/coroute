@@ -28,9 +28,11 @@ module.exports = class CorouteInternalServer {
 					return false
 				}
 
-				if (route.from.hasOwnProperty('method') && route.method !== req.method) {
+				if (route.from.hasOwnProperty('method') && route.from.method !== req.method) {
 					return false
 				}
+
+				console.log('actual method: ' + req.method + '   route method: ' + route.from.method)
 
 				return true
 			})
