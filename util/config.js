@@ -1,7 +1,8 @@
 const util = require('util')
 const fs = require('fs')
 const pfs = {
-	'readFileSync': util.promisify(fs.readFileSync)
+	'readFile': util.promisify(fs.readFile),
+	'writeFile': util.promisify(fs.writeFile)
 }
 
 const defaultConfig = {
@@ -29,7 +30,8 @@ const defaultConfig = {
 		},
 		{
 			'from': {
-				'server': 'my_https'
+				'server': 'my_https',
+				'method': 'GET'
 			},
 			'to': 'http://localhost:5137'
 		},
@@ -43,10 +45,10 @@ const defaultConfig = {
 module.exports = async (configPath) => {
 	let configData = false
 	try {
-		configData = await pfs.readFileSync(configPath).toString()
+		configData = await pfs.readFile(configPath)
 	}
 	catch (err) {
-		await pfs.writeFileSync(configPath, JSON.stringify(defaultConfig, null, '\t'))
+		await pfs.writeFile(configPath, JSON.stringify(defaultConfig, null, '\t'))
 	}
 
 	if (configData === false) {
@@ -54,7 +56,7 @@ module.exports = async (configPath) => {
 	}
 	else {
 		try {
-			return JSON.parse(defaultConfig)
+			return JSON.parse(configData)
 		}
 		catch (err) {
 			console.error('Fatal: Failed to parse config as it contains invalid JSON.')
