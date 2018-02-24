@@ -34,8 +34,6 @@ class CorouteInternalServer {
 					return false
 				}
 
-				console.log('actual method: ' + req.method + '   route method: ' + route.from.method)
-
 				return true
 			})
 
