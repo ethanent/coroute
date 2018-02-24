@@ -1,0 +1,33 @@
+{
+  "name": "coroute",
+  "version": "1.0.0",
+  "description": "The awesome Node.js HTTP reverse-proxy server!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "coroute": "./lib/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ethanent/coroute.git"
+  },
+  "keywords": [
+    "http",
+    "route",
+    "routing",
+    "http-proxy",
+    "proxy",
+    "reverse-proxy"
+  ],
+  "author": "Ethan Davis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ethanent/coroute/issues"
+  },
+  "homepage": "https://github.com/ethanent/coroute#readme",
+  "dependencies": {
+    "gar": "^1.0.3",
+    "vaxic": "^2.3.1"
+  }
+}
