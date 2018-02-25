@@ -63,8 +63,8 @@ module.exports = class CorouteInternalServer {
 	async startServer () {
 		if (this.options.hasOwnProperty('https')) {
 			this.internalServer = https.createServer({
-				'key': await pfs.readFile(path.resolve(process.cwd(), this.options.https.key)),
-				'cert': await pfs.readFile(path.resolve(process.cwd(), this.options.https.cert))
+				'key': (await pfs.readFile(path.resolve(process.cwd(), this.options.https.key))).toString(),
+				'cert': (await pfs.readFile(path.resolve(process.cwd(), this.options.https.cert))).toString()
 			}, this.app.serverHandler)
 		}
 		else {
