@@ -1,4 +1,5 @@
-# coroute
+<p align="center" style="text-align: center"><img src="https://raw.githubusercontent.com/ethanent/coroute/master/media/logo-core.png" width="650" alt="coroute logo"/></p>
+
 > The awesome Node.js HTTP reverse-proxy server.
 
 [GitHub](https://github.com/ethanent/coroute) | [NPM](https://www.npmjs.com/package/coroute)
