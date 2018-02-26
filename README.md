@@ -1,4 +1,4 @@
-<p align="center" style="text-align: center"><img src="https://raw.githubusercontent.com/ethanent/coroute/master/media/logo-core.png" width="650" alt="coroute logo"/></p>
+<p align="center" style="text-align: center"><img src="https://raw.githubusercontent.com/ethanent/coroute/master/media/logo-core.png" width="500" alt="coroute logo"/></p>
 
 > The awesome Node.js HTTP reverse-proxy server.
 
