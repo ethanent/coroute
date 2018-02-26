@@ -1,3 +1,5 @@
+// NOTE: Coroute multithreaded servers are currently experimental.
+
 const path = require('path')
 const http = require('http')
 const https = require('https')
