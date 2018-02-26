@@ -1,6 +1,8 @@
 # coroute
 > The awesome Node.js HTTP reverse-proxy server.
 
+[GitHub](https://github.com/ethanent/coroute) | [NPM](https://www.npmjs.com/package/coroute)
+
 ## Install
 
 ```shell
