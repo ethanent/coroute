@@ -12,7 +12,7 @@ This is a list of config options and information about them!
 
 `route` - a list of `routes` to use for request routing.
 
-## `server` Configuration
+### `server` Configuration
 
 `server`s are objects with names. Their names are used to reference them within `route`s.
 
@@ -26,7 +26,7 @@ This is a list of config options and information about them!
 	`key` - relative path to key file (private)
 	`cert` - relative path to SSL cert file (public)
 
-## `route` Configuration
+### `route` Configuration
 
 `routes` are instructions to listeners which explain how to route requests.
 
@@ -40,3 +40,46 @@ Routes are used in order of priority, as ordered in config.
 	`host` - host to apply route to (HTTP `Host` header)
 
 `to` - defines where to route matching requests. String. Format: origin (Contains protocol and host. ex. `https://ethanent.me`)
+
+## Default coroute configuration
+
+The default coroute configuration is the following:
+
+```json
+{
+	"listen": {
+		"my_https": {
+			"https": {
+				"key": "./key.pem",
+				"cert": "./cert.pem"
+			},
+			"port": 443,
+			"host": "localhost"
+		},
+		"my_http": {
+			"host": "localhost",
+			"port": 80
+		}
+	},
+	"route": [
+		{
+			"from": {
+				"server": "my_http",
+				"host": "example.com"
+			},
+			"to": "http://localhost:5135"
+		},
+		{
+			"from": {
+				"server": "my_https",
+				"method": "GET"
+			},
+			"to": "http://localhost:5137"
+		},
+		{
+			"from": {},
+			"to": "https://fallback.ethanent.example"
+		}
+	]
+}
+```
