@@ -36,6 +36,15 @@ class CorouteInternalServer {
 					return false
 				}
 
+				if (route.from.hasOwnProperty('path')) {
+					if (typeof route.from.path === 'object') { // is a regular expression
+						const pathRegex = new RegExp(route.from.path.pattern, (route.from.path.flags ? route.from.path.flags : ''))
+
+						if (!pathRegex.test(req.url.pathname)) return false
+					}
+					else if (route.from.path !== req.url.pathname) return false
+				}
+
 				return true
 			})
 

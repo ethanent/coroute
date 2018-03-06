@@ -14,7 +14,7 @@ This is a list of config options and information about them!
 
 ### `server` Configuration
 
-`server`s are objects with names. Their names are used to reference them within `route`s.
+`server`s are named objects. Their names are used to reference them within `route`s.
 
 `server`s in coroute configs have the following properties:
 
@@ -38,6 +38,11 @@ Routes are used in order of priority, as ordered in config.
 	`server` - name of `server` to apply route to
 	`method` - method of HTTP request to apply route to
 	`host` - host to apply route to (HTTP `Host` header)
+	`path` - pathname to apply route to
+		As String: exact case-sensitive match of pathnames
+		As Object:
+			`pattern` - Regular expression pattern, as String
+			`flags` - Optional. Regular expression flags as string. Ex. 'i' for case-insensitive test.
 
 `to` - defines where to route matching requests. String. Format: origin (Contains protocol and host. ex. `https://ethanent.me`)
 
