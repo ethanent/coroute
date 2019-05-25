@@ -65,24 +65,27 @@ module.exports = class CorouteInternalServer {
 		this.startServer().then(() => {
 			console.log('Server ' + name + ' has started.')
 		}).catch((err) => {
-			console.error('Server ' + name + ' failed to start: ' + err)
+			console.error('Server ' + name + ' failed to start. ' + err.message)
+			process.exit(1)
 		})
 	}
 
-	async startServer () {
-		if (this.options.hasOwnProperty('https')) {
-			this.internalServer = https.createServer({
-				'key': await pfs.readFile(path.resolve(process.cwd(), this.options.https.key)),
-				'cert': await pfs.readFile(path.resolve(process.cwd(), this.options.https.cert)),
-				'passphrase': this.options.https.passphrase
-			}, this.app.serverHandler)
-		}
-		else {
-			this.internalServer = http.createServer(this.app.serverHandler)
-		}
+	startServer () {
+		return new Promise((res, rej) => {
+			if (typeof this.options.https === 'object' && this.options.https !== null) {
+				this.internalServer = https.createServer({
+					'key': fs.readFileSync(path.resolve(process.cwd(), this.options.https.key)),
+					'cert': fs.readFileSync(path.resolve(process.cwd(), this.options.https.cert)),
+					'passphrase': this.options.https.passphrase
+				}, this.app.serverHandler)
+			}
+			else {
+				this.internalServer = http.createServer(this.app.serverHandler)
+			}
 
-		this.app.internalServer.listen(this.options.port, this.options.host, () => {
-			return
+			this.internalServer.listen(this.options.port, this.options.host, () => {
+				res()
+			})
 		})
 	}
 }
